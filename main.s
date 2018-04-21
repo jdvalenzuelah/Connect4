@@ -45,7 +45,7 @@ main:
 	bl input
 
 	cmp r0, #1
-	moveq r0, #1
+	moveq r0, #2
 	ldreq r1, =column1
 	cmp r0, #2
 	moveq r0, #1
