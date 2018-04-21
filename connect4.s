@@ -8,7 +8,8 @@ Two player connect 4 game developed as part of CC3055 course
 /* Data used on the game */
 .data
 .align 2
-welcome: .asciz "Bienvenidos a Cuatro en línea modificado. \nJugador 1 es representado por X \n Jugador 2 representado por O"
+welcome: .asciz "Bienvenidos a Cuatro en línea modificado. \n"
+players: .asciz "Jugador 1 es representado por X \n Jugador 2 representado por O"
 
 /* Game main function */
 .text
@@ -18,6 +19,9 @@ welcome: .asciz "Bienvenidos a Cuatro en línea modificado. \nJugador 1 es repre
 main:
 	@Display welcome message
 	ldr r0, =welcome
+	bl printf
+	@Display player instructions
+	ldr r0, =players
 	bl printf
 
 	@OS exit
