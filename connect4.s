@@ -9,7 +9,7 @@ Two player connect 4 game developed as part of CC3055 course
 .data
 .align 2
 welcome: .asciz "Bienvenidos a Cuatro en línea modificado. \n"
-players: .asciz "Jugador 1 es representado por X \n Jugador 2 representado por O"
+players: .asciz "Jugador 1 es representado por x \n Jugador 2 representado por o"
 
 /* Game main function */
 .text
