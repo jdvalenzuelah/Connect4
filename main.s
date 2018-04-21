@@ -13,6 +13,7 @@ File contains the game main method for execution
 welcome: .asciz "--- Bienvenidos a Cuatro en línea modificado. ---\n"
 player1: .asciz "Jugador 1 es representado por 1.\n"
 player2: .asciz "Jugador 2 representado por 2.\n"
+test: .asciz "input test: %d \n"
 @Game data
 currentColumn: .word 0
 row1: .word 0,0,0,0
@@ -43,7 +44,9 @@ main:
 	mov r0, #1
 	bl input
 
-	
+	mov r1, r0
+	ldr r0, = test
+	bl printf
 
 
 	@OS exit
