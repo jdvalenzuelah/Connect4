@@ -44,6 +44,7 @@ currentColumn: .word 0
 	cmp column, #4 @else if(column > 4)
 	bgt inputError @True, go to input error
 	ble inputFinish @else go to input finish
+	bne inputError @case a string was entered
 inputError:
 	ldr r0, =inputErrorM @Load error message
 	bl printf @Display error message
