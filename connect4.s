@@ -74,7 +74,7 @@ recorridoVector:
 	ldr box, [column] @load the first box
 	cmp box, #0
 	streq player, [column]
-	beq insertInputFinish]
+	beq insertInputFinish
 	add cont, #1
 	cmp cont, #4
 	bne recorridoVector
