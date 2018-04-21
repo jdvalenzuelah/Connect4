@@ -20,7 +20,7 @@ currentColumn: .word 0
 .align 2
 
 /**
- * Player input
+ * Player input, subroutine verifys that the value is between 1 and 4 and returns the value
  * Param r0: player number (1 or 2)
  * Return: column number on r0
  */
@@ -36,7 +36,7 @@ currentColumn: .word 0
 	bl printf @Display message
 	ldr r0, =inputColumn @load input format
 	ldr r1, =currentColumn @Load addres to store input
-	bl scanf @Store the inpur
+	bl scanf @Store the input
 	ldr r0, =currentColumn @Load input adress
 	ldr column, [r0] @Load input value
 	cmp column, #1 @if(column < 1)
@@ -44,7 +44,6 @@ currentColumn: .word 0
 	cmp column, #4 @else if(column > 4)
 	bgt inputError @True, go to input error
 	ble inputFinish @else go to input finish
-	bne inputError @case a string was entered
 inputError:
 	ldr r0, =inputErrorM @Load error message
 	bl printf @Display error message
@@ -56,4 +55,33 @@ inputFinish:
 	pop {lr} @Retrieve link register
 	mov pc, lr @Return r0
 
+/**
+ * Insert the players input
+ * Param: r0: player number (1 or 2)
+ *		  r1: column vector
+ * Return: r0: vector with the players input
+*/
+.global insertInput
+insertInput:
+	column .req r4 @column variable
+	box    .req r5 @boc variable
+	player .req r6 @player variable
+	cont   .req r7 @cont variable
+	push {lr} @ Store the Link register
+	mov player, r0 @Load the player
+	mov column, r1  @load the column
+recorridoVector:
+	ldr box, [column] @load the first box
+	cmp box, #0
+	streq player, [column]
+	beq insertInputFinish]
+	add cont, #1
+	cmp cont, #4
+	bne recorridoVector
+insertInputFinish:
+	mov r0, column
+	.unreq column @Unlink column variable from r5
+	.unreq box    @Unlink box variable from r5
+	.unreq player @Unlink player variable from r6
+	mov pc, lr @retur r0
 
