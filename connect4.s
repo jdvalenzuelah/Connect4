@@ -21,10 +21,12 @@ main:
 	@Display welcome message
 	ldr r0, =welcome
 	bl printf
-	
+	mov r0, #0
+
 	@Display player instructions
 	ldr r0, =player1
 	bl printf
+	mov r0, #0
 	ldr r0, =player2
 	bl printf
 
