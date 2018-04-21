@@ -57,7 +57,7 @@ main:
 	moveq r0, #1
 	ldreq r1, =column4
 
-	bl insertinput
+	bl insertInput
 
 	@OS exit
 	mov r0,#0
