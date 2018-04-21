@@ -49,6 +49,7 @@ inputError:
 	bl printf @Display error message
 	b inputBody @Go back to input inputBody
 inputFinish:
+	mov r0, column @mov the column value to r0
 	.unreq player @Unlink the player variable from r5
 	.unreq column @Unlink the cplumn variable from r6
 	pop {lr} @Retrieve link register
