@@ -67,7 +67,7 @@ insertInput:
 	box    .req r5 @boc variable
 	player .req r6 @player variable
 	cont   .req r7 @cont variable
-	push {lr} @ Store the Link register
+	@push {lr} @ Store the Link registe
 	mov player, r0 @Load the player
 	mov column, r1  @load the column
 recorridoVector:

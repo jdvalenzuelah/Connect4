@@ -59,6 +59,11 @@ main:
 
 	bl insertInput
 
+	ldr r0, =test
+	ldr r1, =column1
+	ldr r1, [r1]
+	bl printf
+
 	@OS exit
 	mov r0,#0
 	mov r3,#0
