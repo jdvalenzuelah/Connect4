@@ -78,9 +78,6 @@ insertInput:
 	push {lr} @store the link register
 	mov player, r0 @store he player
 	mov column, r1 @store the column
-
-	
-
 	cmp column, #1 @if(column == 1)
 	ldreq column, =column1 @true: load column1
 	cmp column, #2 @else if(column == 2)
