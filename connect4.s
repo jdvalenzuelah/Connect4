@@ -120,10 +120,10 @@ printMatrix:
 	co3 .req r7 @co3 variable
 	co4 .req r8 @co4 variable
 	@load all the columns from the matrix
-	ldr co1, =column4
-	ldr co2, =column3
-	ldr co3, =column2
-	ldr co4, =column1
+	ldr co1, =column1
+	ldr co2, =column2
+	ldr co3, =column3
+	ldr co4, =column4
 	@print first row of the matrix (first row of every column)
 	ldr r0, =matrix
 	ldr r1, [co1]
