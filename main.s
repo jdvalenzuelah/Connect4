@@ -69,7 +69,8 @@ player2Input:
 	@show matrix
 	bl printMatrix
 
-	bl verifyWinner
+play:
+	bl getWinner
 	mov winner, r0
 
 	cmp winner, #0
