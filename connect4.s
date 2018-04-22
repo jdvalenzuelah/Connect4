@@ -11,7 +11,7 @@ File contains subroutines and stores the data for the connect 4 game.
 @Message strings
 inputMessage: .asciz "Judador %d: Ingrese el numero de columna (1, 2, 3, 4): \n"
 inputErrorM: .asciz "** Valor invalido. **\n"
-vectorFull: .asciz "** Columna llena! ***"
+vectorFull: .asciz "** Columna llena! ***\n"
 @Input formats
 inputColumn: .asciz "%d"
 matrix: .asciz "|%d|"
