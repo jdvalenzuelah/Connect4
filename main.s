@@ -49,6 +49,18 @@ main:
 	mov r0, #2
 	bl insertInput
 
+	mov r1, #2
+	mov r0, #2
+	bl insertInput
+
+	mov r1, #2
+	mov r0, #2
+	bl insertInput
+
+	mov r1, #2
+	mov r0, #2
+	bl insertInput
+
 	bl printMatrix
 
 	@OS exit
