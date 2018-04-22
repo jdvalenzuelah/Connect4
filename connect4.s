@@ -214,7 +214,7 @@ printMatrix:
 
 /**
  * Verify winner
- * Return: winner on r0,  0 for no winneryet, 1 for player 1, 2 for player 2 or 3 for tie
+ * Return: winner on r0,  0 for no winner yet, 1 for player 1, 2 for player 2
 */
 .global getWinner
 getWinner:
@@ -237,6 +237,7 @@ getWinner:
 	ldr co4, =column4
 	mov cont, #0
 verifyHorizontal:
+	@Load each value
 	ldr value1, [co1]
 	ldr value2, [co2]
 	ldr value3, [co3]
@@ -244,19 +245,122 @@ verifyHorizontal:
 	rsb value1, value1, value2 @value1 = value1 - value2
 	rsb value3, value3, value4 @value3 = value3 - value4
 	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0
-	moveq result, value2
-	beq verifyFinish
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@go to the next element
 	add co1, #4
 	add co2, #4
 	add co3, #4
 	add co4, #4
 	add cont, #1
-	cmp cont, #4
-	bne verifyHorizontal
+	cmp cont, #4 @verify that cont != 4
+	bne verifyHorizontal @cicle on verifyHorizontal
+	@Reload all the values
+	ldr co1, =column1
+	ldr co2, =column2
+	ldr co3, =column3
+	ldr co4, =column4
+verifyvertical:
+	@load value from each value from the current column
+	ldr value1, [co1]
+	add co1, #4
+	ldr value2, [co1]
+	add co1, #4
+	ldr value3, [co1]
+	add co1, #4
+	ldr value4, [co1]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@load value from each value from the current column
+	ldr value1, [co2]
+	add co1, #4
+	ldr value2, [co2]
+	add co1, #4
+	ldr value3, [co2]
+	add co1, #4
+	ldr value4, [co2]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@load value from each value from the current column
+	ldr value1, [co3]
+	add co1, #4
+	ldr value2, [co3]
+	add co1, #4
+	ldr value3, [co3]
+	add co1, #4
+	ldr value4, [co3]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@load value from each value from the current column
+	ldr value1, [co4]
+	add co1, #4
+	ldr value2, [co4]
+	add co1, #4
+	ldr value3, [co4]
+	add co1, #4
+	ldr value4, [co4]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@Reload all the values
+	ldr co1, =column1
+	ldr co2, =column2
+	ldr co3, =column3
+	ldr co4, =column4
+verifyDiagonals:
+	@load the values from the diagonal
+	ldr value1, [co1]
+	add co2, #4
+	ldr value2, [co2]
+	add co3, #8
+	ldr value3. [co3]
+	add co4, #12
+	ldr value4, [co4]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@Reload all the values
+	ldr co1, =column1
+	ldr co2, =column2
+	ldr co3, =column3
+	ldr co4, =column4
+	add co1, #12
+	ldr value1, [co1]
+	add co2, #8
+	ldr value2, [co2]
+	add co3, #4
+	ldr value3, [co3]
+	ldr value4, [co4]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	mov result, #0 @In case of no winner
 
 verifyFinish:
-	mov r0, result
+	mov r0, result @move the result to r0
+	@Unlink all variables from registers
 	.unreq co1
 	.unreq co2
 	.unreq co3
@@ -267,7 +371,7 @@ verifyFinish:
 	.unreq value4
 	.unreq result
 	.unreq cont
-	mov pc, lr
+	mov pc, lr @return r0
 
 
 
