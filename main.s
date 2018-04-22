@@ -41,29 +41,7 @@ main:
 	bl printf
 
 
-
-	mov r0, #2
-	mov r1, #1
-	bl insertInput
-	bl printMatrix
-	mov r0, #2
-	mov r1, #1
-	bl insertInput
-	bl printMatrix
-	mov r0, #2
-	mov r1, #1
-	bl insertInput
-	bl printMatrix
-	mov r0, #2
-	mov r1, #1
-	bl insertInput
-	bl printMatrix
-	bl getWinner
-	mov r1, r0
-	ldr r0, =test
-	bl printf
-
-/* --- PLayer 1 input --- 
+/* --- PLayer 1 input --- */
 player1Input:
 	mov r0, #1
 	bl input
@@ -72,9 +50,9 @@ player1Input:
 	mov r0, #1	
 	bl insertInput
 	@show matrix
-	bl printMatrix*/
+	bl printMatrix
 
-/* --- PLayer 2 input --- 
+/* --- PLayer 2 input --- */
 player2Input:
 	mov r0, #2
 	bl input
@@ -83,7 +61,7 @@ player2Input:
 	mov r0, #2	
 	bl insertInput
 	@show matrix
-	bl printMatrix*/
+	bl printMatrix
 
 	@OS exit
 	mov r0,#0
