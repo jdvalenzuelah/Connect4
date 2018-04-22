@@ -41,7 +41,12 @@ main:
 	mov r0, #1
 	bl input
 
-	mov r1, #1
+	mov r1, r0
+	mov r0, #1
+	bl insertInput
+
+	mov r1, #2
+	mov r0, #2
 	bl insertInput
 
 	bl printMatrix
