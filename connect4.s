@@ -242,122 +242,130 @@ verifyHorizontal:
 	ldr value2, [co2]
 	ldr value3, [co3]
 	ldr value4, [co4]
-	rsb value1, value1, value2 @value1 = value1 - value2
-	rsb value3, value3, value4 @value3 = value3 - value4
-	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish
-	@go to the next element
+	@Compare each value
+	cmp value1, value2 @if(value1 == value2)
+	moveq winner, value1 @winner = value1
+	cmp value3, value4 @if(value3 == value4)
+	cmpeq winner, value4 @if(winner == value4)
+	beq verifyFinish @go to verifyfinish
+	movne winner, 0 @If non of values is equal winner = 0
+	@acces the next element
 	add co1, #4
 	add co2, #4
 	add co3, #4
 	add co4, #4
-	add cont, #1
-	cmp cont, #4 @verify that cont != 4
-	bne verifyHorizontal @cicle on verifyHorizontal
-	@Reload all the values
-	ldr co1, =column1
-	ldr co2, =column2
-	ldr co3, =column3
-	ldr co4, =column4
+	add cont, #1 @cont++
+	cmp cont, #4 @while cont < 4
+	bne verifyHorizontal @go to verifyHorizontal
 verifyvertical:
-	@load value from each value from the current column
-	ldr value1, [co1]
-	add co1, #4
-	ldr value2, [co1]
-	add co1, #4
-	ldr value3, [co1]
-	add co1, #4
-	ldr value4, [co1]
-	rsb value1, value1, value2 @value1 = value1 - value2
-	rsb value3, value3, value4 @value3 = value3 - value4
-	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish
-	@load value from each value from the current column
-	ldr value1, [co2]
-	add co1, #4
-	ldr value2, [co2]
-	add co1, #4
-	ldr value3, [co2]
-	add co1, #4
-	ldr value4, [co2]
-	rsb value1, value1, value2 @value1 = value1 - value2
-	rsb value3, value3, value4 @value3 = value3 - value4
-	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish
-	@load value from each value from the current column
-	ldr value1, [co3]
-	add co1, #4
-	ldr value2, [co3]
-	add co1, #4
-	ldr value3, [co3]
-	add co1, #4
-	ldr value4, [co3]
-	rsb value1, value1, value2 @value1 = value1 - value2
-	rsb value3, value3, value4 @value3 = value3 - value4
-	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish
-	@load value from each value from the current column
-	ldr value1, [co4]
-	add co1, #4
-	ldr value2, [co4]
-	add co1, #4
-	ldr value3, [co4]
-	add co1, #4
-	ldr value4, [co4]
-	rsb value1, value1, value2 @value1 = value1 - value2
-	rsb value3, value3, value4 @value3 = value3 - value4
-	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish
-	@Reload all the values
+	@reload values
 	ldr co1, =column1
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
+	firstColumn:
+		ldr value1, [co1]
+		add co1, #4
+		ldr value2, [co1]
+		add co1, #4
+		ldr value3, [co1]
+		add co1, #4
+		ldr value4, [co1]
+		add co1, #4
+		@Compare each value
+		cmp value1, value2 @if(value1 == value2)
+		moveq winner, value1 @winner = value1
+		cmp value3, value4 @if(value3 == value4)
+		cmpeq winner, value4 @if(winner == value4)
+		beq verifyFinish @go to verifyfinish
+		movne winner, 0 @If non of values is equal winner = 0
+	secondColumn:
+		ldr value1, [co2]
+		add co2, #4
+		ldr value2, [co2]
+		add co2, #4
+		ldr value3, [co2]
+		add co2, #4
+		ldr value4, [co2]
+		add co2, #4
+		@Compare each value
+		cmp value1, value2 @if(value1 == value2)
+		moveq winner, value1 @winner = value1
+		cmp value3, value4 @if(value3 == value4)
+		cmpeq winner, value4 @if(winner == value4)
+		beq verifyFinish @go to verifyfinish
+		movne winner, 0 @If non of values is equal winner = 0
+	thirdColumn:
+		ldr value1, [co3]
+		add co3, #4
+		ldr value2, [co3]
+		add co3, #4
+		ldr value3, [co3]
+		add co3, #4
+		ldr value4, [co3]
+		add co3, #4
+		@Compare each value
+		cmp value1, value2 @if(value1 == value2)
+		moveq winner, value1 @winner = value1
+		cmp value3, value4 @if(value3 == value4)
+		cmpeq winner, value4 @if(winner == value4)
+		beq verifyFinish @go to verifyfinish
+		movne winner, 0 @If non of values is equal winner = 0
+	fourthColumn:
+		ldr value1, [co4]
+		add co4, #4
+		ldr value2, [co4]
+		add co4, #4
+		ldr value3, [co4]
+		add co4, #4
+		ldr value4, [co4]
+		add co4, #4
+		@Compare each value
+		cmp value1, value2 @if(value1 == value2)
+		moveq winner, value1 @winner = value1
+		cmp value3, value4 @if(value3 == value4)
+		cmpeq winner, value4 @if(winner == value4)
+		beq verifyFinish @go to verifyfinish
+		movne winner, 0 @If non of values is equal winner = 0
 verifyDiagonals:
-	@load the values from the diagonal
-	ldr value1, [co1]
-	add co2, #4
-	ldr value2, [co2]
-	add co3, #8
-	ldr value3, [co3]
-	add co4, #12
-	ldr value4, [co4]
-	rsb value1, value1, value2 @value1 = value1 - value2
-	rsb value3, value3, value4 @value3 = value3 - value4
-	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish
-	@Reload all the values
+	@reload values
 	ldr co1, =column1
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
-	add co1, #12
-	ldr value1, [co1]
-	add co2, #8
-	ldr value2, [co2]
-	add co3, #4
-	ldr value3, [co3]
-	ldr value4, [co4]
-	rsb value1, value1, value2 @value1 = value1 - value2
-	rsb value3, value3, value4 @value3 = value3 - value4
-	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish
-	mov result, #0 @In case of no winner
-
+	firstDiagonal:
+		@load first diagonal values
+		ldr value1, [co1]
+		add co2, #4
+		ldr value2, [co2]
+		add co3, #8
+		ldr value3, [co3]
+		add co4, #12
+		ldr value4, [co4]
+		@Compare each value
+		cmp value1, value2 @if(value1 == value2)
+		moveq winner, value1 @winner = value1
+		cmp value3, value4 @if(value3 == value4)
+		cmpeq winner, value4 @if(winner == value4)
+		beq verifyFinish @go to verifyfinish
+		movne winner, 0 @If non of values is equal winner = 0
+	secondDiagonal:
+		@Load second diagonal values
+		add co1, #12
+		ldr value1, [co1]
+		add co2, #4
+		ldr value2, [co2]
+		add co3, #-4
+		ldr value3, [co3]
+		add co4, #-12
+		ldr value4, [co4]
+		@Compare each value
+		cmp value1, value2 @if(value1 == value2)
+		moveq winner, value1 @winner = value1
+		cmp value3, value4 @if(value3 == value4)
+		cmpeq winner, value4 @if(winner == value4)
+		beq verifyFinish @go to verifyfinish
+		movne winner, 0 @If non of values is equal winner = 0
 verifyFinish:
 	mov r0, result @move the result to r0
 	@Unlink all variables from registers
