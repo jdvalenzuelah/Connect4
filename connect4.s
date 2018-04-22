@@ -79,6 +79,10 @@ insertInput:
 	mov player, r0 @store he player
 	mov column, r1 @store the column
 
+	ldr r0, =inputColumn
+	ldr r1, =column
+	bl printf
+
 	cmp column, #1 @if(column == 1)
 	ldreq column, =column1 @true: load column1
 	cmpne column, #2 @else if(column == 2)
