@@ -41,8 +41,9 @@ main:
 	mov r0, #1
 	bl input
 
-
-	@bl insertInput
+	mov r1, r0
+	mov r0, #1
+	bl insertInput
 
 	mov r1, r0
 	@ldr r1, [r1]
