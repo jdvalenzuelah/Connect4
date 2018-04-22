@@ -319,7 +319,7 @@ verifyvertical:
 	moveq result, value2 @store the result if all are equal
 	beq verifyFinish @Go to verifyFinish
 	@Reload all the values
-	/*ldr co1, =column1
+	ldr co1, =column1
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
@@ -355,7 +355,7 @@ verifyDiagonals:
 	add value1, value1, value3 @value1 = value1 + value3
 	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
 	moveq result, value2 @store the result if all are equal
-	beq verifyFinish @Go to verifyFinish*/
+	beq verifyFinish @Go to verifyFinish
 	mov result, #0 @In case of no winner
 
 verifyFinish:
