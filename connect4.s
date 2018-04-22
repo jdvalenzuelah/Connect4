@@ -11,10 +11,15 @@ File contains subroutines for the connect 4 game.
 @Message strings
 inputMessage: .asciz "Judador %d: Ingrese el numero de columna (1, 2, 3, 4): \n"
 inputErrorM: .asciz "** Valor invalido. **\n"
+vectorFull: .asciz "** Columna llena! ***"
 @Input formats
 inputColumn: .asciz "%d"
 @Saved data
 currentColumn: .word 0
+column1: .word 0,0,0,0
+column2: .word 0,0,0,0
+column3: .word 0,0,0,0
+column4: .word 0,0,0,0
 
 .text
 .align 2
@@ -58,30 +63,50 @@ inputFinish:
 /**
  * Insert the players input
  * Param: r0: player number (1 or 2)
- *		  r1: column vector
+ *        r1: column number
  * Return: r0: vector with the players input
 */
 .global insertInput
 insertInput:
-	column .req r4 @column variable
-	box    .req r5 @boc variable
-	player .req r6 @player variable
-	cont   .req r7 @cont variable
-	@push {lr} @ Store the Link registe
-	mov player, r0 @Load the player
-	mov column, r1  @load the column
+	column .req r5 @Variable column
+	box	   .req r6 @variable box
+	player .req r7 @variable player
+	count  .req r8 @variable count
+	columnInput .req r9 @variable columnInput
+	push {lr} @store the link register
+	mov player, r0 @store he player
+	mov column, r1 @store the column
+
+	cmp column, #1 @if(column == 1)
+	ldreq column, =column1 @true: load column1
+	cmpne column, #2 @else if(column == 2)
+	ldreq column, =column2 @true: load column2
+	cmpne column, #3 @else if(column == 3)
+	ldreq column, =column3 @true: load column3
+	cmpne column, #4 @else if(column == 4)
+	ldreq column, =column4 @load column4
+	mov columnInput, column @store column input
 recorridoVector:
-	ldr box, [column] @load the first box
-	cmp box, #0
-	streq player, [column]
-	beq insertInputFinish
-	add cont, #1
-	cmp cont, #4
-	bne recorridoVector
+	ldr box, [column] @load the current column element
+	cmp box, #0 @if element is empty
+	streq player, [column] @store the player in such element
+	beq insertInputFinish @Go to insertInputFinish
+	add column, #4 @Go to next element
+	add count, #1 @count++
+	cmp count, #4 @if count != 4
+	bne recorridoVector @true go to recorridoVector
+	ldr r0, =vectorFull @ else, load vectorFull message
+	bl printf @display vectorFull message
 insertInputFinish:
-	mov r0, column
-	.unreq column @Unlink column variable from r5
-	.unreq box    @Unlink box variable from r5
-	.unreq player @Unlink player variable from r6
-	mov pc, lr @retur r0
+	mov r0, columnInput @r0 = address of the vector
+	@Unlink variables from registers
+	.unreq column
+	.unreq box
+	.unreq player
+	.unreq count
+	pop {lr} @Retrieve the link register
+	mov pc, lr @return r0
+
+
+
 

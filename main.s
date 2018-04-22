@@ -14,12 +14,7 @@ welcome: .asciz "--- Bienvenidos a Cuatro en línea modificado. ---\n"
 player1: .asciz "Jugador 1 es representado por 1.\n"
 player2: .asciz "Jugador 2 representado por 2.\n"
 test: .asciz "input test: %d \n"
-@Game data
-currentColumn: .word 0
-column1: .word 0,0,0,0
-column2: .word 0,0,0,0
-column3: .word 0,0,0,0
-column4: .word 0,0,0,0
+
 
 
 /* Game main function */
@@ -28,6 +23,8 @@ column4: .word 0,0,0,0
 .global main
 .type main,%function
 main:
+	stmfd sp!,{lr}
+
 	@Display welcome message
 	ldr r0, =welcome
 	bl printf
@@ -43,25 +40,10 @@ main:
 	@Player 1 input
 	mov r0, #1
 	bl input
-
-	cmp r0, #1
-	moveq r0, #2
-	ldreq r1, =column1
-	cmp r0, #2
-	moveq r0, #1
-	ldreq r1, =column2
-	cmp r0, #3
-	moveq r0, #1
-	ldreq r1, =column3
-	cmp r0, #4
-	moveq r0, #1
-	ldreq r1, =column4
-
 	bl insertInput
 
+	mov r1, r0
 	ldr r0, =test
-	ldr r1, =column1
-	ldr r1, [r1]
 	bl printf
 
 	@OS exit
