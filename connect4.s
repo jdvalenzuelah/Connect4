@@ -79,17 +79,15 @@ insertInput:
 	mov player, r0 @store he player
 	mov column, r1 @store the column
 
-	ldr r0, =inputColumn
-	mov r1, column
-	bl printf
+	
 
 	cmp column, #1 @if(column == 1)
 	ldreq column, =column1 @true: load column1
-	cmpne column, #2 @else if(column == 2)
+	cmp column, #2 @else if(column == 2)
 	ldreq column, =column2 @true: load column2
-	cmpne column, #3 @else if(column == 3)
+	cmp column, #3 @else if(column == 3)
 	ldreq column, =column3 @true: load column3
-	cmpne column, #4 @else if(column == 4)
+	cmp column, #4 @else if(column == 4)
 	ldreq column, =column4 @load column4
 	mov columnInput, column @store column input
 recorridoVector:
