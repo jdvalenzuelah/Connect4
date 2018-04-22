@@ -1,7 +1,7 @@
 /***************************************************************
 Universidad del Valle de Guatemala
 Authors: Josue David Valenzuela 171001
-		 Marcos Gutierrez	    17699
+		 Marcos Gutierrez	    17909
 Two player connect 4 game developed as part of CC3055 course
 File contains the game main method for execution
 ***************************************************************/
