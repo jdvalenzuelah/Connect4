@@ -40,10 +40,12 @@ main:
 	@Player 1 input
 	mov r0, #1
 	bl input
-	bl insertInput
+
+
+	@bl insertInput
 
 	mov r1, r0
-	ldr r1, [r1]
+	@ldr r1, [r1]
 	ldr r0, =test
 	bl printf
 
