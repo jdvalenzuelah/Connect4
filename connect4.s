@@ -124,6 +124,12 @@ printMatrix:
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
+	@Start from the last element
+		@Access to the second row
+	add co1, #12
+	add co2, #12
+	add co3, #12
+	add co4, #12
 	@print first row of the matrix (first row of every column)
 	ldr r0, =matrix
 	ldr r1, [co1]
@@ -140,10 +146,10 @@ printMatrix:
 	ldr r0, =enter
 	bl printf
 	@Access to the second row
-	add co1, #4
-	add co2, #4
-	add co3, #4
-	add co4, #4
+	add co1, #-4
+	add co2, #-4
+	add co3, #-4
+	add co4, #-4
 	@print second row of the matrix (second row of every column)
 	ldr r0, =matrix
 	ldr r1, [co1]
@@ -160,10 +166,10 @@ printMatrix:
 	ldr r0, =enter
 	bl printf
 	@Access to the third row
-	add co1, #4
-	add co2, #4
-	add co3, #4
-	add co4, #4
+	add co1, #-4
+	add co2, #-4
+	add co3, #-4
+	add co4, #-4
 	@print third row of the matrix (third row of every column)
 	ldr r0, =matrix
 	ldr r1, [co1]
@@ -180,10 +186,10 @@ printMatrix:
 	ldr r0, =enter
 	bl printf
 	@Access to the fourth row
-	add co1, #4
-	add co2, #4
-	add co3, #4
-	add co4, #4
+	add co1, #-4
+	add co2, #-4
+	add co3, #-4
+	add co4, #-4
 	@print fourth row of the matrix (fourth row of every column)
 	ldr r0, =matrix
 	ldr r1, [co1]
