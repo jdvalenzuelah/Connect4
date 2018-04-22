@@ -69,14 +69,18 @@ player2Input:
 	@show matrix
 	bl printMatrix
 
+/* play function */
 play:
+	@Get the wineer and save it on the variable
 	bl getWinner
 	mov winner, r0
 
+	@Verify that there is a winner
 	cmp winner, #0
 	addeq cont, #1
 	beq player1Input
 
+	@Verify if there is a tie
 	cmp cont, #8
 	ldreq r0, =empate
 	ldrne r0, =mensajeGanador
