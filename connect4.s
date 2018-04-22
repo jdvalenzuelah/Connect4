@@ -1,10 +1,10 @@
-/***************************************************************
+/**********************************************************************
 Universidad del Valle de Guatemala
 Authors: Josue David Valenzuela 171001
 		 Marcos Gutierrez	    17699
 Two player connect 4 game developed as part of CC3055 course
-File contains subroutines for the connect 4 game.
-***************************************************************/
+File contains subroutines and stores the data for the connect 4 game.
+**********************************************************************/
 
 .data
 .align 2
@@ -14,6 +14,8 @@ inputErrorM: .asciz "** Valor invalido. **\n"
 vectorFull: .asciz "** Columna llena! ***"
 @Input formats
 inputColumn: .asciz "%d"
+matrix: .asciz "|%d|"
+enter: .asciz "\n"
 @Saved data
 currentColumn: .word 0
 column1: .word 0,0,0,0
@@ -106,6 +108,105 @@ insertInputFinish:
 	.unreq count
 	pop {lr} @Retrieve the link register
 	mov pc, lr @return r0
+
+/**
+ * Print matrix
+ * No arguments and no return value
+*/
+.global printMatrix
+printMatrix:
+	push {lr} @store the link register
+	co1 .req r5 @co1 variable
+	co2 .req r6 @co2 variable
+	co3 .req r7 @co3 variable
+	co4 .req r8 @co4 variable
+	@load all the columns from the matrix
+	ldr co1, =column1
+	ldr co2, =column2
+	ldr co3, =column3
+	ldr co4, =column4
+	@print first row of the matrix (first row of every column)
+	ldr r0, =matrix
+	ldr r1, [co1]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co2]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co3]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co4]
+	bl printf
+	ldr r0, =enter
+	bl printf
+	@Access to the second row
+	add co1, #4
+	add co2, #4
+	add co3, #4
+	add co4, #4
+	@print second row of the matrix (second row of every column)
+	ldr r0, =matrix
+	ldr r1, [co1]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co2]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co3]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co4]
+	bl printf
+	ldr r0, =enter
+	bl printf
+	@Access to the third row
+	add co1, #4
+	add co2, #4
+	add co3, #4
+	add co4, #4
+	@print third row of the matrix (third row of every column)
+	ldr r0, =matrix
+	ldr r1, [co1]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co2]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co3]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co4]
+	bl printf
+	ldr r0, =enter
+	bl printf
+	@Access to the fourth row
+	add co1, #4
+	add co2, #4
+	add co3, #4
+	add co4, #4
+	@print fourth row of the matrix (fourth row of every column)
+	ldr r0, =matrix
+	ldr r1, [co1]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co2]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co3]
+	bl printf
+	ldr r0, =matrix
+	ldr r1, [co4]
+	bl printf
+	ldr r0, =enter
+	bl printf
+	.unreq co1
+	.unreq co2
+	.unreq co3
+	.unreq co4
+	pop {lr}
+	mov pc, lr
+
 
 
 

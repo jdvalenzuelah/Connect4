@@ -42,13 +42,10 @@ main:
 	bl input
 
 	mov r1, r0
-	mov r0, #2
+	mov r0, #1
 	bl insertInput
 
-	mov r1, r0
-	ldr r1, [r1]
-	ldr r0, =test
-	bl printf
+	bl printMatrix
 
 	@OS exit
 	mov r0,#0
