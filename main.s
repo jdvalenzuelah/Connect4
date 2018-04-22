@@ -42,24 +42,27 @@ main:
 
 
 
-	mov r0, #1
+	mov r0, #2
 	mov r1, #1
 	bl insertInput
-	mov r0, #1
+	bl printMatrix
+	mov r0, #2
 	mov r1, #2
 	bl insertInput
-	mov r0, #1
+	bl printMatrix
+	mov r0, #2
 	mov r1, #3
 	bl insertInput
-	mov r0, #1
+	bl printMatrix
+	mov r0, #2
 	mov r1, #4
 	bl insertInput
-
+	bl printMatrix
 	bl getWinner
 	mov r1, r0
 	ldr r0, =test
 	bl printf
-	
+
 /* --- PLayer 1 input --- 
 player1Input:
 	mov r0, #1
