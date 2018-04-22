@@ -248,7 +248,7 @@ verifyHorizontal:
 	cmp value3, value4 @if(value3 == value4)
 	cmpeq winner, value4 @if(winner == value4)
 	beq verifyFinish @go to verifyfinish
-	movne winner, 0 @If non of values is equal winner = 0
+	movne winner, #0 @If non of values is equal winner = 0
 	@acces the next element
 	add co1, #4
 	add co2, #4
@@ -278,7 +278,7 @@ verifyvertical:
 		cmp value3, value4 @if(value3 == value4)
 		cmpeq winner, value4 @if(winner == value4)
 		beq verifyFinish @go to verifyfinish
-		movne winner, 0 @If non of values is equal winner = 0
+		movne winner, #0 @If non of values is equal winner = 0
 	secondColumn:
 		ldr value1, [co2]
 		add co2, #4
@@ -294,7 +294,7 @@ verifyvertical:
 		cmp value3, value4 @if(value3 == value4)
 		cmpeq winner, value4 @if(winner == value4)
 		beq verifyFinish @go to verifyfinish
-		movne winner, 0 @If non of values is equal winner = 0
+		movne winner, #0 @If non of values is equal winner = 0
 	thirdColumn:
 		ldr value1, [co3]
 		add co3, #4
@@ -310,7 +310,7 @@ verifyvertical:
 		cmp value3, value4 @if(value3 == value4)
 		cmpeq winner, value4 @if(winner == value4)
 		beq verifyFinish @go to verifyfinish
-		movne winner, 0 @If non of values is equal winner = 0
+		movne winner, #0 @If non of values is equal winner = 0
 	fourthColumn:
 		ldr value1, [co4]
 		add co4, #4
@@ -326,7 +326,7 @@ verifyvertical:
 		cmp value3, value4 @if(value3 == value4)
 		cmpeq winner, value4 @if(winner == value4)
 		beq verifyFinish @go to verifyfinish
-		movne winner, 0 @If non of values is equal winner = 0
+		movne winner, #0 @If non of values is equal winner = 0
 verifyDiagonals:
 	@reload values
 	ldr co1, =column1
@@ -348,7 +348,7 @@ verifyDiagonals:
 		cmp value3, value4 @if(value3 == value4)
 		cmpeq winner, value4 @if(winner == value4)
 		beq verifyFinish @go to verifyfinish
-		movne winner, 0 @If non of values is equal winner = 0
+		movne winner, #0 @If non of values is equal winner = 0
 	secondDiagonal:
 		@Load second diagonal values
 		add co1, #12
@@ -365,7 +365,7 @@ verifyDiagonals:
 		cmp value3, value4 @if(value3 == value4)
 		cmpeq winner, value4 @if(winner == value4)
 		beq verifyFinish @go to verifyfinish
-		movne winner, 0 @If non of values is equal winner = 0
+		movne winner, #0 @If non of values is equal winner = 0
 verifyFinish:
 	mov r0, result @move the result to r0
 	@Unlink all variables from registers
