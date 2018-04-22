@@ -372,6 +372,3 @@ verifyFinish:
 	.unreq result
 	.unreq cont
 	mov pc, lr @return r0
-
-
-
