@@ -30,6 +30,8 @@ main:
 	/* utility variables */
 	winner .req r5
 	cont .req r6
+	mov cont, #0
+	mov winner, #0
 
 
 	/* Display welcome message */
@@ -59,7 +61,47 @@ player1Input:
 	bl insertInput
 	@show matrix
 	bl printMatrix
+	@Check for a winner
+	bl getWinner
+	mov winner, r0
+	cmp winner, #0
+	bne printWinner
 
+/* --- PLayer 2 input --- */
+player2Input:
+	mov r0, #0
+	mov r1, #0
+	mov r0, #2
+	bl input
+	@save input
+	mov r1, r0
+	mov r0, #2	
+	bl insertInput
+	@show matrix
+	bl printMatrix
+	@Check for a winner
+	bl getWinner
+	mov winner, r0
+	cmp winner, #0
+	bne printWinner
+/* -- Verify if there is a tie -- */
+tieChecker:
+	add cont, #1
+	cmp cont, #8
+	bne player1Input
+	beq printTie
+
+/* Print tie message */
+printTie:
+	ldr r0, =empate
+	bl printf
+	b exit
+
+/* print the winner */
+printWinner:
+	ldr r0, =mensajeGanador
+	mov r1, winner
+	bl printf 
 
 /* exit code */
 exit:
