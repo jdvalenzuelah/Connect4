@@ -49,6 +49,8 @@ main:
 
 /* --- PLayer 1 input --- */
 player1Input:
+	mov r0, #0
+	mov r1, #0
 	mov r0, #1
 	bl input
 	@save input
@@ -60,6 +62,8 @@ player1Input:
 
 /* --- PLayer 2 input --- */
 player2Input:
+	mov r0, #0
+	mov r1, #0
 	mov r0, #2
 	bl input
 	@save input
