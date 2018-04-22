@@ -47,15 +47,15 @@ main:
 	bl insertInput
 	bl printMatrix
 	mov r0, #2
-	mov r1, #2
+	mov r1, #1
 	bl insertInput
 	bl printMatrix
 	mov r0, #2
-	mov r1, #3
+	mov r1, #1
 	bl insertInput
 	bl printMatrix
 	mov r0, #2
-	mov r1, #4
+	mov r1, #1
 	bl insertInput
 	bl printMatrix
 	bl getWinner
