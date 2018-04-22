@@ -367,7 +367,7 @@ verifyDiagonals:
 		beq verifyFinish @go to verifyfinish
 		movne winner, #0 @If non of values is equal winner = 0
 verifyFinish:
-	mov r0, result @move the result to r0
+	mov r0, winner @move the result to r0
 	@Unlink all variables from registers
 	.unreq co1
 	.unreq co2
@@ -377,6 +377,6 @@ verifyFinish:
 	.unreq value2
 	.unreq value3
 	.unreq value4
-	.unreq result
+	.unreq winner
 	.unreq cont
 	mov pc, lr @return r0
