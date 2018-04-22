@@ -37,20 +37,17 @@ main:
 	ldr r0, =player2
 	bl printf
 
-	@Player 1 input
+	/* --- PLayer 1 input --- */
 	mov r0, #1
 	bl input
-
-	mov r1, #1
-	mov r0, #1
+	@save input
+	mov r1, r0
+	mov r0, #1	
 	bl insertInput
-
-	mov r1, #2
-	mov r0, #2
-	bl insertInput
-
+	@show matrix
 	bl printMatrix
-
+	/* --------------------- */
+	
 	@OS exit
 	mov r0,#0
 	mov r3,#0
