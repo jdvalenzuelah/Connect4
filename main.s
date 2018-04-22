@@ -42,7 +42,7 @@ main:
 	bl input
 
 	mov r1, r0
-	mov r0, #1
+	mov r0, #2
 	bl insertInput
 
 	mov r1, r0
