@@ -244,7 +244,7 @@ verifyHorizontal:
 	rsb value1, value1, value2 @value1 = value1 - value2
 	rsb value3, value3, value4 @value3 = value3 - value4
 	add value1, value1, value3 @value1 = value1 + value3
-	cmp value1, 0
+	cmp value1, #0
 	moveq result, value2
 	beq verifyFinish
 	add co1, #4
