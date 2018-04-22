@@ -329,7 +329,7 @@ verifyDiagonals:
 	add co2, #4
 	ldr value2, [co2]
 	add co3, #8
-	ldr value3. [co3]
+	ldr value3, [co3]
 	add co4, #12
 	ldr value4, [co4]
 	rsb value1, value1, value2 @value1 = value1 - value2
