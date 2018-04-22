@@ -11,9 +11,10 @@ File contains the game main method for execution
 .align 2
 @Message strings
 welcome: .asciz "--- Bienvenidos a Cuatro en línea modificado. ---\n"
-player1: .asciz "Jugador 1 es representado por 1.\n"
-player2: .asciz "Jugador 2 representado por 2.\n"
-test: .asciz "input test: %d \n"
+player1: .asciz "- Jugador 1 es representado por 1.\n"
+player2: .asciz "- Jugador 2 representado por 2.\n"
+esVacio: .asciz "- Espacio vacio representado por 0.\n"
+test: .asciz "Ganador: %d \n"
 
 
 
@@ -30,14 +31,36 @@ main:
 	bl printf
 	mov r0, #0
 
-	/* Display player instructions */
+	/* Display game instructions */
 	ldr r0, =player1
 	bl printf
 	mov r0, #0
 	ldr r0, =player2
 	bl printf
+	ldr r0, =esVacio
+	bl printf
 
-/* --- PLayer 1 input --- */
+
+
+	mov r0, #1
+	mov r1, #1
+	bl insertInput
+	mov r0, #1
+	mov r1, #2
+	bl insertInput
+	mov r0, #1
+	mov r1, #3
+	bl insertInput
+	mov r0, #1
+	mov r1, #4
+	bl insertInput
+
+	bl getWinner
+	mov r1, r0
+	ldr r0, =test
+	bl printf
+	
+/* --- PLayer 1 input --- 
 player1Input:
 	mov r0, #1
 	bl input
@@ -46,9 +69,9 @@ player1Input:
 	mov r0, #1	
 	bl insertInput
 	@show matrix
-	bl printMatrix
+	bl printMatrix*/
 
-/* --- PLayer 2 input --- */
+/* --- PLayer 2 input --- 
 player2Input:
 	mov r0, #2
 	bl input
@@ -57,7 +80,7 @@ player2Input:
 	mov r0, #2	
 	bl insertInput
 	@show matrix
-	bl printMatrix
+	bl printMatrix*/
 
 	@OS exit
 	mov r0,#0

@@ -212,7 +212,62 @@ printMatrix:
 	pop {lr}
 	mov pc, lr
 
+/**
+ * Verify winner
+ * Return: winner on r0,  0 for no winneryet, 1 for player 1, 2 for player 2 or 3 for tie
+*/
+.global getWinner
+getWinner:
+	co1 .req r2 @co1 variable
+	co2 .req r3 @co2 variable
+	co3 .req r4 @co3 variable
+	co4 .req r5 @co4 variable
+	@variable for each value
+	value1 .req r6
+	value2 .req r7
+	value3 .req r8
+	value4 .req r9 
+	@variable for result
+	result .req r10
+	cont .req r11
+	@Load columns from the Matrix
+	ldr co1, =column1
+	ldr co2, =column2
+	ldr co3, =column3
+	ldr co4, =column4
+	mov cont, #0
+verifyHorizontal:
+	ldr value1, [co1]
+	ldr value2, [co2]
+	ldr value3, [co3]
+	ldr value4, [co4]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, 0
+	moveq result, value2
+	beq verifyFinish
+	add co1, #4
+	add co2, #4
+	add co3, #4
+	add co4, #4
+	add cont, #1
+	cmp cont, #4
+	bne verifyHorizontal
 
+verifyFinish:
+	mov r0, result
+	.unreq co1
+	.unreq co2
+	.unreq co3
+	.unreq co4
+	.unreq value1
+	.unreq value2
+	.unreq value3
+	.unreq value4
+	.unreq result
+	.unreq cont
+	mov pc, lr
 
 
 
