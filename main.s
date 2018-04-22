@@ -25,19 +25,20 @@ test: .asciz "input test: %d \n"
 main:
 	stmfd sp!,{lr}
 
-	@Display welcome message
+	/* Display welcome message */
 	ldr r0, =welcome
 	bl printf
 	mov r0, #0
 
-	@Display player instructions
+	/* Display player instructions */
 	ldr r0, =player1
 	bl printf
 	mov r0, #0
 	ldr r0, =player2
 	bl printf
 
-	/* --- PLayer 1 input --- */
+/* --- PLayer 1 input --- */
+player1Input:
 	mov r0, #1
 	bl input
 	@save input
@@ -46,8 +47,18 @@ main:
 	bl insertInput
 	@show matrix
 	bl printMatrix
-	/* --------------------- */
-	
+
+/* --- PLayer 2 input --- */
+player2Input:
+	mov r0, #2
+	bl input
+	@save input
+	mov r1, r0
+	mov r0, #2	
+	bl insertInput
+	@show matrix
+	bl printMatrix
+
 	@OS exit
 	mov r0,#0
 	mov r3,#0
