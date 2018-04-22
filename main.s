@@ -14,7 +14,8 @@ welcome: .asciz "--- Bienvenidos a Cuatro en línea modificado. ---\n"
 player1: .asciz "- Jugador 1 es representado por 1.\n"
 player2: .asciz "- Jugador 2 representado por 2.\n"
 esVacio: .asciz "- Espacio vacio representado por 0.\n"
-test: .asciz "Ganador: %d \n"
+mensajeGanador: .asciz "Ganador: ¡¡Jugador %d!!\n"
+empate: .asciz "¡Empate!"
 
 
 
@@ -25,6 +26,11 @@ test: .asciz "Ganador: %d \n"
 .type main,%function
 main:
 	stmfd sp!,{lr}
+
+	/* utility variables */
+	winner .req r5
+	cont .req r6
+
 
 	/* Display welcome message */
 	ldr r0, =welcome
@@ -62,6 +68,24 @@ player2Input:
 	bl insertInput
 	@show matrix
 	bl printMatrix
+
+	bl verifyWinner
+	mov winner, r0
+
+	cmp winner, #0
+	addeq cont, #1
+	beq player1Input
+
+	cmp cont, #8
+	ldreq r0, =empate
+	ldrne r0, =mensajeGanador
+	mov r1, winner
+	bl printf
+
+	@UN LINK variables
+	.unreq winner
+	.unreq cont
+
 
 	@OS exit
 	mov r0,#0
