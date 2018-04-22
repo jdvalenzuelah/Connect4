@@ -228,7 +228,7 @@ getWinner:
 	value3 .req r8
 	value4 .req r9 
 	@variable for result
-	result .req r10
+	winner .req r10
 	cont .req r11
 	@Load columns from the Matrix
 	ldr co1, =column1
