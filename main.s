@@ -46,7 +46,7 @@ main:
 	bl insertInput
 
 	mov r1, r0
-	@ldr r1, [r1]
+	ldr r1, [r1]
 	ldr r0, =test
 	bl printf
 
