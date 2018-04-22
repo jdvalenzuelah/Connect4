@@ -59,6 +59,15 @@ player1Input:
 	bl insertInput
 	@show matrix
 	bl printMatrix
+	@Verify if there is a winner
+	bl getWinner
+	mov winner, r0
+	@Verify who was the winner
+	cmp winner, #0
+	ldrne r0, =mensajeGanador
+	movne r1, winner
+	bl printf
+	b unlink
 
 /* --- PLayer 2 input --- */
 player2Input:
@@ -82,20 +91,22 @@ play:
 	@Verify that there is a winner
 	cmp winner, #0
 	addeq cont, #1
-	beq player1Input
 
 	@Verify if there is a tie
 	cmp cont, #8
 	ldreq r0, =empate
 	ldrne r0, =mensajeGanador
-	mov r1, winner
+	movne r1, winner
 	bl printf
 
+unlink:
 	@UN LINK variables
 	.unreq winner
 	.unreq cont
+	b exit @finish the game
 
-
+/* exit code */
+exit:
 	@OS exit
 	mov r0,#0
 	mov r3,#0
