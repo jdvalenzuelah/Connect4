@@ -228,7 +228,7 @@ getWinner:
 	value2 .req r7
 	value3 .req r8
 	value4 .req r9 
-	@variable for result
+	@variable for winner
 	winner .req r10
 	cont .req r11
 	@Load columns from the Matrix
@@ -271,7 +271,7 @@ verifyvertical:
 	rsb value3, value3, value4 @value3 = value3 - value4
 	add value1, value1, value3 @value1 = value1 + value3
 	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
+	moveq winner, value2 @store the winner if all are equal
 	beq verifyFinish @Go to verifyFinish
 	@load value from each value from the current column
 	ldr value1, [co2]
@@ -285,7 +285,7 @@ verifyvertical:
 	rsb value3, value3, value4 @value3 = value3 - value4
 	add value1, value1, value3 @value1 = value1 + value3
 	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
+	moveq winner, value2 @store the winner if all are equal
 	beq verifyFinish @Go to verifyFinish
 	@load value from each value from the current column
 	ldr value1, [co3]
@@ -299,7 +299,7 @@ verifyvertical:
 	rsb value3, value3, value4 @value3 = value3 - value4
 	add value1, value1, value3 @value1 = value1 + value3
 	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
+	moveq winner, value2 @store the winner if all are equal
 	beq verifyFinish @Go to verifyFinish
 	@load value from each value from the current column
 	ldr value1, [co4]
@@ -313,7 +313,7 @@ verifyvertical:
 	rsb value3, value3, value4 @value3 = value3 - value4
 	add value1, value1, value3 @value1 = value1 + value3
 	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
-	moveq result, value2 @store the result if all are equal
+	moveq winner, value2 @store the winner if all are equal
 	beq verifyFinish @Go to verifyFinish
 	@Reload all the values
 	ldr co1, =column1
@@ -360,7 +360,7 @@ verifyDiagonals:
 		beq verifyFinish @go to verifyfinish
 		movne winner, #0 @If non of values is equal winner = 0
 verifyFinish:
-	mov r0, winner @move the result to r0
+	mov r0, winner @move the winner to r0
 	@Unlink all variables from registers
 	.unreq co1
 	.unreq co2
