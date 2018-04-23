@@ -92,18 +92,6 @@ main:
 	@show matrix
 	bl printMatrix
 
-	mov r0, #0
-	mov r1, #0
-	mov r0, #1
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
-
 	@Check for a winner
 	bl getWinner
 	mov winner, r0
