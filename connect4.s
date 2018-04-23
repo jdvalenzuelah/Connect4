@@ -237,7 +237,7 @@ getWinner:
 	ldr co3, =column3
 	ldr co4, =column4
 	mov cont, #0
-/*verifyHorizontal:
+verifyHorizontal:
 	@Load each value
 	ldr value1, [co1]
 	ldr value2, [co2]
@@ -257,8 +257,13 @@ getWinner:
 	add co4, #4
 	add cont, #1 @cont++
 	cmp cont, #4 @while cont < 4
-	bne verifyHorizontal @go to verifyHorizontal*/
+	bne verifyHorizontal @go to verifyHorizontal
 verifyvertical:
+	@Load columns from the Matrix
+	ldr co1, =column1
+	ldr co2, =column2
+	ldr co3, =column3
+	ldr co4, =column4
 	@load value from each value from the current column
 	ldr value1, [co1]
 	add co1, #4
@@ -275,11 +280,11 @@ verifyvertical:
 	beq verifyFinish @Go to verifyFinish
 	@load value from each value from the current column
 	ldr value1, [co2]
-	add co1, #4
+	add co2, #4
 	ldr value2, [co2]
-	add co1, #4
+	add co2, #4
 	ldr value3, [co2]
-	add co1, #4
+	add co2, #4
 	ldr value4, [co2]
 	rsb value1, value1, value2 @value1 = value1 - value2
 	rsb value3, value3, value4 @value3 = value3 - value4
@@ -289,11 +294,11 @@ verifyvertical:
 	beq verifyFinish @Go to verifyFinish
 	@load value from each value from the current column
 	ldr value1, [co3]
-	add co1, #4
+	add co3, #4
 	ldr value2, [co3]
-	add co1, #4
+	add co3, #4
 	ldr value3, [co3]
-	add co1, #4
+	add co3, #4
 	ldr value4, [co3]
 	rsb value1, value1, value2 @value1 = value1 - value2
 	rsb value3, value3, value4 @value3 = value3 - value4
@@ -303,11 +308,11 @@ verifyvertical:
 	beq verifyFinish @Go to verifyFinish
 	@load value from each value from the current column
 	ldr value1, [co4]
-	add co1, #4
+	add co4, #4
 	ldr value2, [co4]
-	add co1, #4
+	add co4, #4
 	ldr value3, [co4]
-	add co1, #4
+	add co4, #4
 	ldr value4, [co4]
 	rsb value1, value1, value2 @value1 = value1 - value2
 	rsb value3, value3, value4 @value3 = value3 - value4
