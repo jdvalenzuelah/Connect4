@@ -263,70 +263,70 @@ verifyvertical:
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
-	firstColumn:
-		ldr value1, [co1]
-		add co1, #4
-		ldr value2, [co1]
-		add co1, #4
-		ldr value3, [co1]
-		add co1, #4
-		ldr value4, [co1]
-		add co1, #4
-		@Compare each value
-		cmp value1, value2 @if(value1 == value2)
-		moveq winner, value1 @winner = value1
-		cmp value3, value4 @if(value3 == value4)
-		cmpeq winner, value4 @if(winner == value4)
-		beq verifyFinish @go to verifyfinish
-		movne winner, #0 @If non of values is equal winner = 0
-	secondColumn:
-		ldr value1, [co2]
-		add co2, #4
-		ldr value2, [co2]
-		add co2, #4
-		ldr value3, [co2]
-		add co2, #4
-		ldr value4, [co2]
-		add co2, #4
-		@Compare each value
-		cmp value1, value2 @if(value1 == value2)
-		moveq winner, value1 @winner = value1
-		cmp value3, value4 @if(value3 == value4)
-		cmpeq winner, value4 @if(winner == value4)
-		beq verifyFinish @go to verifyfinish
-		movne winner, #0 @If non of values is equal winner = 0
-	thirdColumn:
-		ldr value1, [co3]
-		add co3, #4
-		ldr value2, [co3]
-		add co3, #4
-		ldr value3, [co3]
-		add co3, #4
-		ldr value4, [co3]
-		add co3, #4
-		@Compare each value
-		cmp value1, value2 @if(value1 == value2)
-		moveq winner, value1 @winner = value1
-		cmp value3, value4 @if(value3 == value4)
-		cmpeq winner, value4 @if(winner == value4)
-		beq verifyFinish @go to verifyfinish
-		movne winner, #0 @If non of values is equal winner = 0
-	fourthColumn:
-		ldr value1, [co4]
-		add co4, #4
-		ldr value2, [co4]
-		add co4, #4
-		ldr value3, [co4]
-		add co4, #4
-		ldr value4, [co4]
-		add co4, #4
-		@Compare each value
-		cmp value1, value2 @if(value1 == value2)
-		moveq winner, value1 @winner = value1
-		cmp value3, value4 @if(value3 == value4)
-		cmpeq winner, value4 @if(winner == value4)
-		beq verifyFinish @go to verifyfinish
-		movne winner, #0 @If non of values is equal winner = 0
+firstColumn:
+	ldr value1, [co1]
+	add co1, #4
+	ldr value2, [co1]
+	add co1, #4
+	ldr value3, [co1]
+	add co1, #4
+	ldr value4, [co1]
+	add co1, #4
+	@Compare each value
+	cmp value1, value2 @if(value1 == value2)
+	moveq winner, value1 @winner = value1
+	cmp value3, value4 @if(value3 == value4)
+	cmpeq winner, value4 @if(winner == value4)
+	beq verifyFinish @go to verifyfinish
+	movne winner, #0 @If non of values is equal winner = 0
+secondColumn:
+	ldr value1, [co2]
+	add co2, #4
+	ldr value2, [co2]
+	add co2, #4
+	ldr value3, [co2]
+	add co2, #4
+	ldr value4, [co2]
+	add co2, #4
+	@Compare each value
+	cmp value1, value2 @if(value1 == value2)
+	moveq winner, value1 @winner = value1
+	cmp value3, value4 @if(value3 == value4)
+	cmpeq winner, value4 @if(winner == value4)
+	beq verifyFinish @go to verifyfinish
+	movne winner, #0 @If non of values is equal winner = 0
+thirdColumn:
+	ldr value1, [co3]
+	add co3, #4
+	ldr value2, [co3]
+	add co3, #4
+	ldr value3, [co3]
+	add co3, #4
+	ldr value4, [co3]
+	add co3, #4
+	@Compare each value
+	cmp value1, value2 @if(value1 == value2)
+	moveq winner, value1 @winner = value1
+	cmp value3, value4 @if(value3 == value4)
+	cmpeq winner, value4 @if(winner == value4)
+	beq verifyFinish @go to verifyfinish
+	movne winner, #0 @If non of values is equal winner = 0
+fourthColumn:
+	ldr value1, [co4]
+	add co4, #4
+	ldr value2, [co4]
+	add co4, #4
+	ldr value3, [co4]
+	add co4, #4
+	ldr value4, [co4]
+	add co4, #4
+	@Compare each value
+	cmp value1, value2 @if(value1 == value2)
+	moveq winner, value1 @winner = value1
+	cmp value3, value4 @if(value3 == value4)
+	cmpeq winner, value4 @if(winner == value4)
+	beq verifyFinish @go to verifyfinish
+	movne winner, #0 @If non of values is equal winner = 0
 verifyDiagonals:
 	@reload values
 	ldr co1, =column1
