@@ -14,34 +14,14 @@ welcome: .asciz "--- Bienvenidos a Cuatro en línea modificado. ---\n"
 player1: .asciz "- Jugador 1 es representado por 1.\n"
 player2: .asciz "- Jugador 2 representado por 2.\n"
 esVacio: .asciz "- Espacio vacio representado por 0.\n"
-mensajeGanador: .asciz "Ganador: ¡¡Jugador %d!!\n                                         ===   == ===   ==   ===    ===      ==  
-                                         ==   =====   ==    ===    =====    ==  
-                                         ===   ===   ===    ===    ======   ==  
-                                          ===  ===  ===     ===    === ===  ==  
-                                           == ===== ==      ===    ===   =====  
-                                            ==== =====      ===    ===    ====  
-                                            ===   ===       ===    ===     ===  
-                                                                                
-                                                                                
-                                                                                
-===   == ===   ==   ===    ===      ==     ===     ===    ========    =======   
- ==   =====   ===   ===    =====    ==     ====    ===    ===         ==   ===  
- ===   ===   ===    ===    ======   ==     =====   ===    ===         ==   ===  
-  ===  ===   ==     ===    === ===  ==     ==  === ===    ======      =======   
-   ======== ===     ===    ===   =====     ==   ======    ===         == ===    
-    ==== =====      ===    ===    ====     ==    =====    ===         ==  ====  
-    ====  ===       ===    ===     ===     ==      ===    ========    ==    === 
-                                                                                
-                                                                                
-                                                                                
-   ===     ===    ========    =======                                           
-   ====    ===    ===         ==   ===                                          
-   =====   ===    ===         ==   ===                                          
-   ==  === ===    ======      =======                                           
-   ==   ======    ===         == ===                                            
-   ==    =====    ===         ==  ===                                           
-   ==      ===    ========    ==    ===                                         
-   ==       ==    ========    ==     === "
+mensajeGanador: .asciz "Ganador: ¡¡Jugador %d!!\n"                                                                                                                                                           
+winner1: .asciz "===   == ===   ==   ===    ===      ==     ===     ===    ========    =======\n"   
+winner2: .asciz " ==   =====   ===   ===    =====    ==     ====    ===    ===         ==   === \n"
+winner3: .asciz " ===   ===   ===    ===    ======   ==     =====   ===    ===         ==   === \n"
+winner4: .asciz "  ===  ===   ==     ===    === ===  ==     ==  === ===    ======      ======= \n"  
+winner5: .asciz "   ======== ===     ===    ===   =====     ==   ======    ===         == === \n"   
+winner6: .asciz "    ==== =====      ===    ===    ====     ==    =====    ===         ==  ==== \n" 
+winner7: .asciz "    ====  ===       ===    ===     ===     ==      ===    ========    ==    === \n"
 empate: .asciz "¡Empate!"
 
 
@@ -131,6 +111,20 @@ printWinner:
 	ldr r0, =mensajeGanador
 	mov r1, winner
 	bl printf 
+	ldr r0,=winner1
+	bl printf
+	ldr r0,=winner2
+	bl printf
+	ldr r0,=winner3
+	bl printf
+	ldr r0,=winner4
+	bl printf
+	ldr r0,=winner5
+	bl printf
+	ldr r0,=winner6
+	bl printf
+	ldr r0,=winner7
+	bl printf
 
 /* exit code */
 exit:
