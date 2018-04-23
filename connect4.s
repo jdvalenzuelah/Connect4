@@ -258,12 +258,14 @@ verifyHorizontal:
 	add cont, #1 @cont++
 	cmp cont, #4 @while cont < 4
 	bne verifyHorizontal @go to verifyHorizontal
-verifyvertical:
+	b verifyVertical
+verifyVertical:
 	@reload values
 	ldr co1, =column1
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
+	b firstColumns
 firstColumn:
 	ldr r0, =matrix
 	ldr value1, [co1]
