@@ -265,7 +265,7 @@ verifyVertical:
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
-	b firstColumns
+	b firstColumn
 firstColumn:
 	ldr r0, =matrix
 	ldr value1, [co1]
