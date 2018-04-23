@@ -258,85 +258,68 @@ verifyHorizontal:
 	add cont, #1 @cont++
 	cmp cont, #4 @while cont < 4
 	bne verifyHorizontal @go to verifyHorizontal
-	b verifyVertical
-verifyVertical:
-	@reload values
+verifyvertical:
+	@load value from each value from the current column
+	ldr value1, [co1]
+	add co1, #4
+	ldr value2, [co1]
+	add co1, #4
+	ldr value3, [co1]
+	add co1, #4
+	ldr value4, [co1]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@load value from each value from the current column
+	ldr value1, [co2]
+	add co1, #4
+	ldr value2, [co2]
+	add co1, #4
+	ldr value3, [co2]
+	add co1, #4
+	ldr value4, [co2]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@load value from each value from the current column
+	ldr value1, [co3]
+	add co1, #4
+	ldr value2, [co3]
+	add co1, #4
+	ldr value3, [co3]
+	add co1, #4
+	ldr value4, [co3]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@load value from each value from the current column
+	ldr value1, [co4]
+	add co1, #4
+	ldr value2, [co4]
+	add co1, #4
+	ldr value3, [co4]
+	add co1, #4
+	ldr value4, [co4]
+	rsb value1, value1, value2 @value1 = value1 - value2
+	rsb value3, value3, value4 @value3 = value3 - value4
+	add value1, value1, value3 @value1 = value1 + value3
+	cmp value1, #0 @If valuue1 == 0,then it means all the values are equal
+	moveq result, value2 @store the result if all are equal
+	beq verifyFinish @Go to verifyFinish
+	@Reload all the values
 	ldr co1, =column1
 	ldr co2, =column2
 	ldr co3, =column3
 	ldr co4, =column4
-	b firstColumn
-firstColumn:
-	ldr r0, =matrix
-	ldr value1, [co1]
-	mov r1, value1
-	bl printf
-	add co1, #4
-	ldr r0, =matrix
-	ldr value2, [co1]
-	mov r1, value2
-	bl printf
-	add co1, #4
-	ldr r0, =matrix
-	ldr value3, [co1]
-	mov r1, value3
-	bl printf
-	add co1, #4
-	ldr r0, =matrix
-	ldr value4, [co1]
-	mov r1, value4
-	bl printf
-	add co1, #4
-	@Compare each value
-	
-secondColumn:
-	ldr value1, [co2]
-	add co2, #4
-	ldr value2, [co2]
-	add co2, #4
-	ldr value3, [co2]
-	add co2, #4
-	ldr value4, [co2]
-	add co2, #4
-	@Compare each value
-	cmp value1, value2 @if(value1 == value2)
-	moveq winner, value1 @winner = value1
-	cmp value3, value4 @if(value3 == value4)
-	cmpeq winner, value4 @if(winner == value4)
-	beq verifyFinish @go to verifyfinish
-	movne winner, #0 @If non of values is equal winner = 0
-thirdColumn:
-	ldr value1, [co3]
-	add co3, #4
-	ldr value2, [co3]
-	add co3, #4
-	ldr value3, [co3]
-	add co3, #4
-	ldr value4, [co3]
-	add co3, #4
-	@Compare each value
-	cmp value1, value2 @if(value1 == value2)
-	moveq winner, value1 @winner = value1
-	cmp value3, value4 @if(value3 == value4)
-	cmpeq winner, value4 @if(winner == value4)
-	beq verifyFinish @go to verifyfinish
-	movne winner, #0 @If non of values is equal winner = 0
-fourthColumn:
-	ldr value1, [co4]
-	add co4, #4
-	ldr value2, [co4]
-	add co4, #4
-	ldr value3, [co4]
-	add co4, #4
-	ldr value4, [co4]
-	add co4, #4
-	@Compare each value
-	cmp value1, value2 @if(value1 == value2)
-	moveq winner, value1 @winner = value1
-	cmp value3, value4 @if(value3 == value4)
-	cmpeq winner, value4 @if(winner == value4)
-	beq verifyFinish @go to verifyfinish
-	movne winner, #0 @If non of values is equal winner = 0
 verifyDiagonals:
 	@reload values
 	ldr co1, =column1
