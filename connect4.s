@@ -218,6 +218,7 @@ printMatrix:
 */
 .global getWinner
 getWinner:
+	push {lr}
 	co1 .req r2 @co1 variable
 	co2 .req r3 @co2 variable
 	co3 .req r4 @co3 variable
@@ -264,21 +265,28 @@ verifyvertical:
 	ldr co3, =column3
 	ldr co4, =column4
 firstColumn:
+	ldr r0, =matrix
 	ldr value1, [co1]
+	mov r1, value1
+	bl printf
 	add co1, #4
+	ldr r0, =matrix
 	ldr value2, [co1]
+	mov r1, value2
+	bl printf
 	add co1, #4
+	ldr r0, =matrix
 	ldr value3, [co1]
+	mov r1, value3
+	bl printf
 	add co1, #4
+	ldr r0, =matrix
 	ldr value4, [co1]
+	mov r1, value4
+	bl printf
 	add co1, #4
 	@Compare each value
-	cmp value1, value2 @if(value1 == value2)
-	moveq winner, value1 @winner = value1
-	cmp value3, value4 @if(value3 == value4)
-	cmpeq winner, value4 @if(winner == value4)
-	beq verifyFinish @go to verifyfinish
-	movne winner, #0 @If non of values is equal winner = 0
+	
 secondColumn:
 	ldr value1, [co2]
 	add co2, #4
@@ -379,4 +387,5 @@ verifyFinish:
 	.unreq value4
 	.unreq winner
 	.unreq cont
+	pop {lr}
 	mov pc, lr @return r0
