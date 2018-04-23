@@ -48,6 +48,8 @@ main:
 	ldr r0, =esVacio
 	bl printf
 
+/* --- PLayer 1 input --- */
+player1Input:
 	mov r0, #0
 	mov r1, #0
 	mov r0, #1
@@ -58,87 +60,40 @@ main:
 	bl insertInput
 	@show matrix
 	bl printMatrix
-
-	mov r0, #0
-	mov r1, #0
-	mov r0, #2
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
-	mov r0, #0
-	mov r1, #0
-	mov r0, #2
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
-	mov r0, #0
-	mov r1, #0
-	mov r0, #1
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
-	mov r0, #0
-	mov r1, #0
-	mov r0, #1
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
-	mov r0, #0
-	mov r1, #0
-	mov r0, #1
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
-	mov r0, #0
-	mov r1, #0
-	mov r0, #1
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
-	mov r0, #0
-	mov r1, #0
-	mov r0, #1
-	bl input
-	@save input
-	mov r1, r0
-	mov r0, #1	
-	bl insertInput
-	@show matrix
-	bl printMatrix
-
 	@Check for a winner
 	bl getWinner
 	mov winner, r0
+	cmp winner, #0
+	bne printWinner
+
+/* --- PLayer 2 input --- */
+player2Input:
+	mov r0, #0
+	mov r1, #0
+	mov r0, #2
+	bl input
+	@save input
+	mov r1, r0
+	mov r0, #2	
+	bl insertInput
+	@show matrix
+	bl printMatrix
+	@Check for a winner
+	bl getWinner
+	mov winner, r0
+	cmp winner, #0
+	bne printWinner
+/* -- Verify if there is a tie -- */
+tieChecker:
+	add cont, #1
+	cmp cont, #8
+	bne player1Input
+	beq printTie
+
+/* Print tie message */
+printTie:
+	ldr r0, =empate
+	bl print
 
 
 /* print the winner */
