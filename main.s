@@ -83,9 +83,12 @@ player2Input:
 	mov winner, r0
 	cmp winner, #0
 	bne printWinner
+
+	add cont, #1
+	b tieChecker
+
 /* -- Verify if there is a tie -- */
 tieChecker:
-	add cont, #1
 	cmp cont, #8
 	bne player1Input
 	beq printTie
