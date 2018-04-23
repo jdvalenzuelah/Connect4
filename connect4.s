@@ -237,7 +237,7 @@ getWinner:
 	ldr co3, =column3
 	ldr co4, =column4
 	mov cont, #0
-verifyHorizontal:
+/*verifyHorizontal:
 	@Load each value
 	ldr value1, [co1]
 	ldr value2, [co2]
@@ -257,7 +257,7 @@ verifyHorizontal:
 	add co4, #4
 	add cont, #1 @cont++
 	cmp cont, #4 @while cont < 4
-	bne verifyHorizontal @go to verifyHorizontal
+	bne verifyHorizontal @go to verifyHorizontal*/
 verifyvertical:
 	@load value from each value from the current column
 	ldr value1, [co1]
