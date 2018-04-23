@@ -93,7 +93,7 @@ tieChecker:
 /* Print tie message */
 printTie:
 	ldr r0, =empate
-	bl print
+	bl printf
 
 
 /* print the winner */
